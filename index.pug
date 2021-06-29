@@ -1,0 +1,25 @@
+.header
+  .logo 名稱
+  img.bar(src='https://i.imgur.com/272HrJZ.png')
+form#app(@submit.prevent='checkForm',action='/sonwhere',method='post')
+    .title 填寫募資方案資料
+    p 募資專案名稱：
+    input.name(v-model='name', placeholder='請輸入募資專案名稱',name='name')
+    p 募資金額(元)：
+    input.amount(v-model.number='amount',type='number',placeholder='請輸入募資金額',name='amount')
+    p 類別：
+    select.type(v-model='type',name='type')
+      option(v-for='Type in Types') {{Type}}
+    p 內容簡介：
+    textarea.content(v-model='content',placeholder='請輸入募資專案內容簡介',name='content')
+    .error(v-if='errors.length')
+      img.error_img(src='https://i.imgur.com/xdZuo8J.png')
+      span.error_msg 請輸入
+        span(v-for='(error,index) in errors')
+          span {{error}}
+          span(v-if='index+1 < errors.length') 、
+    input.btn_confirm(type='submit', value='確認' @click='projectSubmit')
+    input.btn_cancel(type='reset',value='取消')
+    //- .view(v-if='projects.length')
+    //-   .view_a(v-for='project in projects') {{project}}
+    

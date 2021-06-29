@@ -1,0 +1,121 @@
+//顏色
+$color_black: #606060
+$color_purple:#281483
+$color_light_purple:#BE78D1
+$background_color:#F5F5F5
+$background_error:#fcd4dc
+//尺寸
+$height_header: 50px
+$size_title: 40px
+$size_text: 18px
+$input_size: 50%
+$input_type: 25%
+$input_content_w: 100%
+$input_content_h: 300px
+$input_border_radius: 5px
+$btn_w: 135px
+$btn_h: 50px
+$box_shadow: 0px 3px 10px grey
+
+@mixin size($w,$h)
+  width: $w
+  height: $h
+  
+@mixin shadow($shadow,$radius)
+  box-shadow: $shadow
+  border-radius: $radius
+
+*
+  // border: solid 1px
+  font-family: "微軟正黑體"
+  position: relative
+  letter-spacing: 1.5px
+  line-height: $size_text + 20
+  color: $color_black
+  font-size: $size_text
+  
+html,body
+  margin: 0
+  padding: 0
+
+body
+  background-color: $background_color
+  
+.header
+  overflow: hidden
+  height: $height_header
+  background: -webkit-linear-gradient(left,$color_purple,$color_light_purple)
+  background: -o-linear-gradient(right,$color_purple,$color_light_purple)
+  background: -moz-linear-gradient(right,$color_purple,$color_light_purple)
+  background: linear-gradient(to right,$color_purple,$color_light_purple)
+  & .bar
+    top: -90px
+    right: 0px
+    width: 30%
+    max-width: 390%
+    max-height: 390%
+    position: absolute
+    right: -20px
+    +size(auto,auto)
+  & .logo
+    display: inline-block 
+
+.title
+  margin-top: $height_header
+  font-size: $size_title
+  font-weight: bold
+  line-height: $size_title + 20
+  text-align: center
+
+form
+  padding-top:  $height_header
+  margin-left: auto
+  margin-right: auto
+  padding: 50px
+  max-width: 1024px
+    
+.name , .amount
+  width: $input_size
+  +shadow($box_shadow,$input_border_radius)
+
+
+.type
+  +shadow($box_shadow,$input_border_radius)
+  width: $input_type
+
+.content
+  +size($input_content_w,$input_content_h)
+  +shadow($box_shadow,$input_border_radius)
+  
+.btn_confirm, .btn_cancel
+  background: -webkit-linear-gradient(left,$color_purple,$color_light_purple)
+  background: -o-linear-gradient(right,$color_purple,$color_light_purple)
+  background: -moz-linear-gradient(right,$color_purple,$color_light_purple)
+  background: linear-gradient(to right,$color_purple,$color_light_purple)
+  color: white
+  +size($btn_w,$btn_h)
+  +shadow($box_shadow,15px)
+  display: inline-block
+  position: absolute
+  margin-top: 10px
+  top: 95%
+.btn_confirm
+  left: 50%
+  margin-left: -$btn_w/2
+.btn_cancel
+  left: 86%
+  margin-left: -$btn_w/2
+  
+.error
+  +size($input_content_w + 1,$size_text + 20)
+  margin-top: 15px
+  border-radius: $input_border_radius
+  background: $background_error
+  font-weight: bold
+
+  & .error_img
+    +size($size_text + 5,$size_text + 5)
+    left: 10px
+    top: ($size_text + 20)/6
+  & .error_msg
+      left: 30px
